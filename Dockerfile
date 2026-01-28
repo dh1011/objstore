@@ -1,5 +1,5 @@
 # Build Stage
-FROM golang:1.21-alpine AS builder
+FROM docker.io/golang:1.21-alpine AS builder
 
 WORKDIR /app
 COPY go.mod ./
@@ -9,7 +9,7 @@ COPY main.go ./
 RUN go build -o objstore main.go
 
 # Runtime Stage
-FROM alpine:latest
+FROM docker.io/alpine:latest
 
 WORKDIR /app
 COPY --from=builder /app/objstore .
