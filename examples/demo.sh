@@ -6,7 +6,7 @@ rm -rf data
 mkdir -p data
 
 # Start server
-./objstore &
+../objstore &
 PID=$!
 sleep 2
 

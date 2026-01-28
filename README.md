@@ -89,6 +89,7 @@ const s3 = new S3Client({
 A `demo.sh` script is included to verify functionality:
 
 ```bash
+cd examples
 ./demo.sh
 ```
 
