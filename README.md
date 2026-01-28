@@ -93,6 +93,21 @@ cd examples
 ./demo.sh
 ```
 
+## Docker Support
+
+You can run the server using Docker or Docker Compose.
+
+### Using Docker Compose (Recommended)
+```bash
+docker-compose up -d
+```
+
+### Manual Docker Run
+```bash
+docker build -t objstore .
+docker run -p 8080:8080 -v $(pwd)/data:/data objstore
+```
+
 ## Storage Layout
 
 ```
