@@ -1,0 +1,18 @@
+# Binaries
+objstore
+
+# Data
+data/
+*.db
+
+# OS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editor
+.idea/
+.vscode/
+
+# Logs
+*.log
