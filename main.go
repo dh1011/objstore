@@ -280,6 +280,8 @@ func (s *ObjectStore) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			s.handleCreateBucket(w, r, bucket)
 		case http.MethodDelete:
 			s.handleDeleteBucket(w, r, bucket)
+		case http.MethodHead:
+			s.handleHeadBucket(w, r, bucket)
 		default:
 			writeError(w, "MethodNotAllowed", "Method not allowed", bucket, http.StatusMethodNotAllowed)
 		}
@@ -340,6 +342,15 @@ func (s *ObjectStore) handleDeleteBucket(w http.ResponseWriter, r *http.Request,
 		return
 	}
 	w.WriteHeader(204)
+}
+
+func (s *ObjectStore) handleHeadBucket(w http.ResponseWriter, r *http.Request, bucket string) {
+	path := s.bucketPath(bucket)
+	if _, err := os.Stat(path); os.IsNotExist(err) {
+		w.WriteHeader(404)
+		return
+	}
+	w.WriteHeader(200)
 }
 
 func (s *ObjectStore) handleListObjects(w http.ResponseWriter, r *http.Request, bucket string) {
